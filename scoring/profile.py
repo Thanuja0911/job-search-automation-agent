@@ -1,0 +1,91 @@
+SKILL_WEIGHTS: dict[str, int] = {
+    "react": 3,
+    "typescript": 3,
+    "javascript": 2,
+    "nodejs": 3,
+    "python": 3,
+    "fastapi": 2,
+    "django": 2,
+    "aws": 3,
+    "docker": 2,
+    "kubernetes": 2,
+    "terraform": 2,
+    "langchain": 3,
+    "mongodb": 2,
+    "firebase": 1,
+    "flutter": 1,
+    "oauth": 1,
+    "jenkins": 1,
+    "git": 1,
+    "cicd": 1,
+    "rest api": 2,
+    "graphql": 1,
+    "claude": 3,
+    "autogen": 2,
+    "openai": 2,
+}
+
+TARGET_ROLES: list[str] = [
+    "software engineer",
+    "full stack",
+    "fullstack",
+    "full-stack",
+    "frontend",
+    "front-end",
+    "backend",
+    "back-end",
+    "devops",
+    "machine learning",
+    "ml engineer",
+    "ai engineer",
+    "applied ai",
+    "software developer",
+    "web developer",
+    "early career",
+    "new grad",
+    "founding engineer",
+]
+
+ADJACENT_ROLES: list[str] = [
+    "data engineer",
+    "platform engineer",
+    "site reliability",
+    "cloud engineer",
+    "automation engineer",
+    "systems engineer",
+]
+
+CLOUD_KEYWORDS: list[str] = [
+    "aws",
+    "gcp",
+    "azure",
+    "cloud",
+    "kubernetes",
+    "terraform",
+    "docker",
+]
+
+AI_KEYWORDS: list[str] = [
+    "langchain",
+    "openai",
+    "claude",
+    "llm",
+    "vector",
+    "embedding",
+    "autogen",
+    "rag",
+    "fine-tuning",
+    "huggingface",
+    "fastapi",
+]
+
+DOMAIN_BONUS_KEYWORDS: dict[str, int] = {
+    "startup": 1,
+    "early stage": 1,
+    "remote": 1,
+    "greenfield": 1,
+    "ai-first": 2,
+    "series a": 1,
+    "series b": 1,
+    "open source": 1,
+}

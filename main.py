@@ -6,6 +6,7 @@ import config
 from adapters.orchestrator import run_all_adapters
 from filters.dedup import Deduplicator
 from filters.hard_filter import HardFilter
+from scoring.engine import ScoringEngine
 from storage.db import init_db
 
 
@@ -46,8 +47,29 @@ def main() -> None:
         f"Fetched: {total} | Passed filter: {len(passed_jobs)} | "
         f"Rejected: {total - len(passed_jobs)}"
     )
-    for job in passed_jobs[:3]:
-        print(job)
+
+    if not passed_jobs:
+        return
+
+    engine = ScoringEngine()
+    scored = sorted(
+        [(job, engine.score(job)) for job in passed_jobs],
+        key=lambda x: x[1].total_score,
+        reverse=True,
+    )
+
+    print(f"\n{'#':<4} {'Score':<7} {'Title':<35} {'Company':<25} Matched Skills")
+    print("-" * 100)
+    for rank, (job, result) in enumerate(scored[:10], start=1):
+        skills = ", ".join(result.matched_skills[:5])
+        print(
+            f"{rank:<4} {result.total_score:<7} "
+            f"{job.title[:34]:<35} {job.company[:24]:<25} {skills}"
+        )
+
+    top = scored[0][1]
+    avg = sum(r.total_score for _, r in scored) / len(scored)
+    print(f"\nTop score: {top.total_score} | Avg score: {avg:.1f}")
 
 
 if __name__ == "__main__":
