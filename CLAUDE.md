@@ -1,0 +1,12 @@
+- Project: AI job search automation tool
+- Language: Python 3.11+
+- Key libraries: pydantic v2, httpx, rich, rapidfuzz, sqlite3 (stdlib), pytest
+- Database: SQLite only. No ORMs. Raw SQL via sqlite3.
+- Async: use asyncio + httpx.AsyncClient for HTTP. No Celery, no queues.
+- No LLM calls in the hot path (scoring is keyword-based in MVP)
+- All config loaded from .env via python-dotenv
+- All data models use pydantic v2 BaseModel
+- One file per adapter in adapters/. Each inherits from BaseAdapter.
+- Tests in tests/ using pytest. Aim for coverage on filters and scoring.
+- Never auto-apply jobs. Never generate PDFs. MVP scope only.
+- When generating code, show complete files. Do not use placeholders.
